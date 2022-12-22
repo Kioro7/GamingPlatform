@@ -1,0 +1,75 @@
+﻿<Window x:Class="GamingPlatform.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GamingPlatform"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:viewmodels="clr-namespace:GamingPlatform.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
+        mc:Ignorable="d"
+        Title="GamingPlatform" Height="750" Width="1300">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Background="#FF151617" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource MaterialDesignFlatLightButton}"
+                        ToolTip="MaterialDesignFlatLightButton"
+                        MinWidth="100" Margin="0,0,30,0" Cursor="Hand">
+                <StackPanel Height="Auto" Width="Auto" Orientation="Horizontal"
+                            >
+                    <TextBlock  Text="БАЛАНС" Foreground="White" FontSize="16"/>
+                    <TextBlock MinWidth="80" Text="{Binding User.Balance, UpdateSourceTrigger=PropertyChanged}" Foreground="White" FontSize="16" Margin="10,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Border Grid.Row="0" Grid.Column="2">
+                <Button
+                Style="{StaticResource MaterialDesignFloatingActionLightButton}"
+                ToolTip="Аккаунт пользователя" Margin="15,15,15,15" Cursor="Hand"
+                Command="{Binding ClickCommand}">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Account" Width="30" Height="30"/>
+                        <Frame></Frame>
+                    </StackPanel>
+                </Button>
+        </Border>
+
+        <Border Grid.Row="0" Grid.Column="0">
+            <TextBlock Text="Genesis" Foreground="White" FontSize="35" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="300,0,0,0"></TextBlock>
+        </Border>
+
+        <Border Grid.Row="1" Grid.ColumnSpan="3">
+                <TabControl SelectedIndex="{Binding SelectedTabItem}" Height="Auto" Width="Auto" Style="{StaticResource MaterialDesignFilledTabControl}" Background="{DynamicResource PrimaryHueLightBrush}" FontSize="16" BorderBrush="#FF2072C2" VerticalAlignment="Top">
+                <TabItem Header="ГЛАВНАЯ" ToolTip="Страница, отображающая рейтинг популярных игр и игр со скидкой">
+                    <StackPanel>
+                        <!--<Frame Content="{Binding CurrentPage}"></Frame>-->
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="МАГАЗИН" ToolTip="Магазин доступных для покупки игр">
+                        <StackPanel>
+                            <!--<Frame Content="{Binding CurrentPage}"></Frame>-->
+                        </StackPanel>
+                    </TabItem>
+                <TabItem Header="СПИСОК МОИХ ИГР" ToolTip="Список приобретенных пользователем игр">
+                        <StackPanel>
+                            <!--<Frame Source="/Views/GameList.xaml"></Frame>-->
+                        </StackPanel>
+                    </TabItem>
+            </TabControl>
+        </Border>
+            <Frame NavigationUIVisibility="Hidden" Grid.ColumnSpan="3" Grid.Row="2" Content="{Binding CurrentPage}"></Frame>
+        </Grid>
+    </ScrollViewer>
+</Window>
