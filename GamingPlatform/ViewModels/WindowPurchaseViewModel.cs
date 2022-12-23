@@ -121,6 +121,7 @@ namespace GamingPlatform.ViewModels
                         Balance = User.Balance
                     };
 
+                    GLOBAL.User = User;
                     db.UpdateUser(user);
                     purchaseService.AddNewGamePurchase(purch);
                 }

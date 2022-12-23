@@ -96,6 +96,17 @@ namespace GamingPlatform.ViewModels
             CurrentPage = userPage;
         }
 
+        private RelayCommand _changeBalance;
+        public RelayCommand ChangeBalance
+        {
+            get { return _changeBalance ?? (_changeBalance = new RelayCommand(obj => Changes())); }
+        }
+
+        public void Changes()
+        {
+            User = GLOBAL.User;
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

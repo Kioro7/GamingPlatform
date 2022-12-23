@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GamingPlatform"
         mc:Ignorable="d"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodels="clr-namespace:GamingPlatform.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:AuthorizationWindowViewModel}"
         Title="GamingPlatform" Height="500" Width="400">
-    <Grid Background="#5C2DE7">
+    <Grid Background="Blue">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.15*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
@@ -24,13 +24,14 @@
                 <TextBlock Margin="10" HorizontalAlignment="Center" Text="Вход в систему" FontSize="20" FontWeight="Bold"/>
                 <WrapPanel HorizontalAlignment="Center" Margin="0,60,0,0">
                     <materialDesign:PackIcon Kind="Account" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5,5,10,10" MaxWidth="50" MaxHeight="50" MinWidth="30" MinHeight="30"/>
-                    <TextBox materialDesign:HintAssist.Hint="Введите никнейм" BorderBrush="Black" Style="{StaticResource MaterialDesignOutlinedTextBox}" HorizontalAlignment="Center" Margin="0,0,0,5" MinHeight="50" MaxHeight="50" MinWidth="200" MaxWidth="300"/>
+                    <TextBox materialDesign:HintAssist.Hint="Введите никнейм" Text="{Binding User.Nickname}" BorderBrush="Black" Style="{StaticResource MaterialDesignOutlinedTextBox}" HorizontalAlignment="Center" Margin="0,0,0,5" MinHeight="50" MaxHeight="50" MinWidth="200" MaxWidth="300"/>
                 </WrapPanel>
                 <WrapPanel HorizontalAlignment="Center" Margin="0,20,0,0">
                     <materialDesign:PackIcon Kind="Lock" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="5,5,10,10" MaxWidth="50" MaxHeight="50" MinWidth="30" MinHeight="30"/>
-                    <PasswordBox Style="{StaticResource MaterialDesignOutlinedPasswordBox}" materialDesign:HintAssist.Hint="Введите пароль" MinHeight="50" MaxHeight="50" MinWidth="200" MaxWidth="300"/>
+                    <TextBox Style="{StaticResource MaterialDesignOutlinedTextBox}" Text="{Binding User.Password}" materialDesign:HintAssist.Hint="Введите пароль" MinHeight="50" MaxHeight="50" MinWidth="200" MaxWidth="300"/>
                 </WrapPanel>
-                <Button HorizontalAlignment="Center" Content="Войти" Margin="0,20,0,0"></Button>
+                <Button HorizontalAlignment="Center" Content="Войти" Margin="0,20,0,0"
+                        Command="{Binding Click}"></Button>
                 <Button HorizontalAlignment="Center" Margin="20,10,20,20" Content="Создать аккаунт" Style="{StaticResource MaterialDesignFlatButton}" Cursor="Hand"></Button>
             </StackPanel>
         </Border>

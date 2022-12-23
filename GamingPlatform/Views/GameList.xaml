@@ -36,7 +36,7 @@
                             CommandParameter="{Binding Id}">
                         <StackPanel Margin="10" Orientation="Horizontal">
                             <Image Source="{Binding FileName, UpdateSourceTrigger=PropertyChanged}"
-                               MaxWidth="180"/>
+                               MaxWidth="180" />
 
                             <StackPanel Orientation="Vertical" MinWidth="400">
                                 <TextBlock Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Foreground="White" FontWeight="Bold" 

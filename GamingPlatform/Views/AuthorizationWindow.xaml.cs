@@ -1,4 +1,9 @@
-﻿using System;
+﻿using BLL.Interfaces;
+using BLL.Util;
+using GamingPlatform.Util;
+using GamingPlatform.ViewModels;
+using Ninject;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,7 +26,18 @@ namespace GamingPlatform
     {
         public AuthorizationWindow()
         {
+            var kernel = new StandardKernel(new NinjectRegistrations(), new ServiceModule("GamingPlatform"));
+            IDbCrud crudServ = kernel.Get<IDbCrud>();
+
             InitializeComponent();
+
+
+            AuthorizationWindowViewModel aw = new AuthorizationWindowViewModel(crudServ);
+            DataContext = aw;
+
+            if (aw.CloseAction == null)
+                aw.CloseAction = new Action(this.Close);
+
         }
     }
 }
